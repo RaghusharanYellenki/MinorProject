@@ -13,8 +13,8 @@ class Addressroute extends StatefulWidget {
 class _AddressrouteState extends State<Addressroute> {
   bool isLoggedIn = false;
 
-  // ignore: non_constant_identifier_names
-  Addressroute() {
+
+ Addressroute() {
     MySharedPreferences.instance
         .getBooleanValue("loggedin")
         .then((value) => setState(() {

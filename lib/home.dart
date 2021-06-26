@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:minorproject/screens/about.dart';
 import 'package:minorproject/screens/account.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
         if (user == null) {
           Navigator.of(context).pushReplacementNamed("Startpage");
         }
+        return null;
       },
     );
   }
@@ -69,6 +71,7 @@ class _HomeState extends State<Home> {
         this.isloggedin = true;
       });
     }
+    return null;
   }
 
   signOut() async {
@@ -161,14 +164,28 @@ class _HomeState extends State<Home> {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.person),
+                    leading: Icon(Icons.developer_board),
+                    title: Text('Developer'),
+                    onTap: () {
+                      setState(
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => About()),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.live_help_outlined),
                     title: Text('Help and Support'),
                     onTap: () {
                       print('Help and Support');
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.loop_rounded),
+                    leading: Icon(Icons.system_update_alt_sharp),
                     title: Text('Updates'),
                     onTap: () => {
                       print('Updates'),
@@ -213,22 +230,22 @@ class _HomeState extends State<Home> {
               title: Text('Home Screen'),
               backgroundColor: Colors.blue,
             ),
-            body:!isloggedin
+            body: !isloggedin
                 ? CircularProgressIndicator()
                 : SingleChildScrollView(
                     child: Container(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          SizedBox(height: 100),
                           Center(
                             child: Text(
-                              "Welcome ${user.displayName}\n,your registered email is ${user.email}",
+                              'Welcome ${user.displayName}\n your registered email is \n\n ${user.email}',
                               style: TextStyle(
                                   fontWeight: FontWeight.normal, fontSize: 30),
                             ),
                           ),
                           SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           ElevatedButton(
                               onPressed: () {

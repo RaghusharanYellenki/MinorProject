@@ -37,9 +37,9 @@ class _RegisterState extends State<Register> {
         if (user != null) {
           // ignore: deprecated_member_use
           await _auth.currentUser.updateProfile(displayName: name);
-          // await Navigator.pushReplacementNamed(context, "/");
         }
-      } catch (e) {
+      }
+      catch (e) {
         print(e);
       }
     }
